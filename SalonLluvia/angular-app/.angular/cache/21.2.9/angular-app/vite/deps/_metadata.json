@@ -1,0 +1,58 @@
+{
+  "hash": "86a43b7f",
+  "configHash": "e0320b39",
+  "lockfileHash": "50a2e283",
+  "browserHash": "7c835aa0",
+  "optimized": {
+    "@angular/common": {
+      "src": "../../../../../../node_modules/@angular/common/fesm2022/common.mjs",
+      "file": "@angular_common.js",
+      "fileHash": "d562c84a",
+      "needsInterop": false
+    },
+    "@angular/core": {
+      "src": "../../../../../../node_modules/@angular/core/fesm2022/core.mjs",
+      "file": "@angular_core.js",
+      "fileHash": "d4c3096c",
+      "needsInterop": false
+    },
+    "@angular/platform-browser": {
+      "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
+      "file": "@angular_platform-browser.js",
+      "fileHash": "0b0da5ef",
+      "needsInterop": false
+    },
+    "@angular/router": {
+      "src": "../../../../../../node_modules/@angular/router/fesm2022/router.mjs",
+      "file": "@angular_router.js",
+      "fileHash": "9bbaf13b",
+      "needsInterop": false
+    },
+    "@glidejs/glide": {
+      "src": "../../../../../../node_modules/@glidejs/glide/dist/glide.esm.js",
+      "file": "@glidejs_glide.js",
+      "fileHash": "de3fba49",
+      "needsInterop": false
+    },
+    "countup.js": {
+      "src": "../../../../../../node_modules/countup.js/dist/countUp.min.js",
+      "file": "countup__js.js",
+      "fileHash": "5cc9ea95",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-FV4TVHIH": {
+      "file": "chunk-FV4TVHIH.js"
+    },
+    "chunk-4UX5CJLN": {
+      "file": "chunk-4UX5CJLN.js"
+    },
+    "chunk-JDXKSP6M": {
+      "file": "chunk-JDXKSP6M.js"
+    },
+    "chunk-GOMI4DH3": {
+      "file": "chunk-GOMI4DH3.js"
+    }
+  }
+}
