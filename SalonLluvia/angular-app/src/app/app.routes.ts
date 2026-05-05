@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 
 import { Home } from './components/home/home';
 import { Services } from './components/services/services';
+import { About } from './components/about/about';
 
 const salon: string = "- Salon Lluvia";
 
@@ -15,5 +16,10 @@ export const routes: Routes = [
         path: "servicio",
         component: Services,
         title: `Servicios ${salon}`
+    },
+    {
+        path: "nosotros",
+        component: About,
+        title: `Sobre Nosotros ${salon}`
     },
 ];
