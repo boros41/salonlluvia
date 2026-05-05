@@ -1,0 +1,90 @@
+<section id="contact-2251">
+    <div class="cs-container">
+        <!--Copy and paste any iframe from Google Maps-->
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d352.0769115647991!2d-80.8557955672369!3d35.77002177316065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x885159b3197aaaab%3A0x695fd39779fadae3!2sSalon%20Lluvia!5e1!3m2!1sen!2sus!4v1767140107113!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="cs-wrapper">
+            <div class="cs-content">
+                <h1 class="font-dancing-script text-primary mb-0">Contáctanos</h1>
+                <h1 class="cs-title text-capitalize mb-4">Reserve su cita</h1>
+            </div>
+            <form asp-controller="Home" asp-action="Appointment" method="post" onsubmit="onSubmit(event)">
+                <div class="row">
+                    <div class="col-md-6">
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 d-none d-md-block">
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-md-6 mb-2 mb-md-0">
+                        <div class="form-floating">
+                            <input asp-for="Name" class="form-control" placeholder="Nombre" autocomplete="name">
+                            <label asp-for="Name">Nombre</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-block d-md-none">
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating" id="phone-number-wrapper">
+                            <input asp-for="PhoneNumber" class="form-control" placeholder="Teléfono" autocomplete="tel-national">
+                            <label asp-for="PhoneNumber">Teléfono</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 d-none d-md-block">
+                        <span asp-validation-for="Date" class="text-danger date-validation-error"></span>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-md-6 mb-2 mb-md-0">
+                        <div class="form-floating">
+                            <input asp-for="Email" class="form-control" placeholder="Email" autocomplete="email">
+                            <label asp-for="Email">Correo</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-block d-md-none">
+                            <span asp-validation-for="Date" class="text-danger date-validation-error"></span>
+                        </div>
+                        <div class="form-floating">
+                            <input asp-for="Date" class="form-control" placeholder="Date" autocomplete="off">
+                            <label asp-for="Date">Fecha</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <span asp-validation-for="DesiredService" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-12">
+                        <div class="form-floating" id="desired-service">
+                            <textarea asp-for="DesiredService" class="form-control" placeholder="Servicio deseado (por ejemplo, tinte)"
+                                      style="height: 150px" autocomplete="off"></textarea>
+                            <label asp-for="DesiredService">Servicio</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-12">
+                        <button id="appointment-submit-btn" class="btn btn-primary text-uppercase w-100 py-3 ms-0" type="submit">
+                            <span>Reservar</span>
+                            <span class="spinner-border spinner-border-sm" aria-hidden="true" hidden></span>
+                            <span role="status" hidden>Reservando</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

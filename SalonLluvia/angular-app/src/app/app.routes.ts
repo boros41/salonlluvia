@@ -4,6 +4,7 @@ import { Home } from './components/home/home';
 import { Services } from './components/services/services';
 import { About } from './components/about/about';
 import { Team } from './components/team/team';
+import { Appointment } from './components/appointment/appointment';
 
 const salon: string = "- Salon Lluvia";
 
@@ -27,5 +28,10 @@ export const routes: Routes = [
         path: "equipo",
         component: Team,
         title: `Equipo ${salon}`
+    },
+    {
+        path: "cita",
+        component: Appointment,
+        title: `Cita ${salon}`
     }
 ];
