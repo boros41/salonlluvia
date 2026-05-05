@@ -3,6 +3,7 @@ import { Routes } from '@angular/router';
 import { Home } from './components/home/home';
 import { Services } from './components/services/services';
 import { About } from './components/about/about';
+import { Team } from './components/team/team';
 
 const salon: string = "- Salon Lluvia";
 
@@ -22,4 +23,9 @@ export const routes: Routes = [
         component: About,
         title: `Sobre Nosotros ${salon}`
     },
+    {
+        path: "equipo",
+        component: Team,
+        title: `Equipo ${salon}`
+    }
 ];
