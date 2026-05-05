@@ -12,6 +12,10 @@
     <router-outlet />
 </main>
 
-<!-- <footer>
-    <app-footer />
-</footer> -->
+<footer>
+    @defer (on viewport) {
+        <app-footer />
+    } @placeholder {
+        <div>Footer placeholder</div>
+    }
+</footer>
