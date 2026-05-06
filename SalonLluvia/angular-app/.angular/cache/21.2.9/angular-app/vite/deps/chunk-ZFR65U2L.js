@@ -6,39 +6,8 @@ import {
   ɵɵdefineInjectable
 } from "./chunk-WNUUFSUI.js";
 
-// node_modules/@angular/cdk/fesm2022/_id-generator-chunk.mjs
-var counters = {};
-var _IdGenerator = class __IdGenerator {
-  _appId = inject(APP_ID);
-  static _infix = `a${Math.floor(Math.random() * 1e5).toString()}`;
-  getId(prefix, randomize = false) {
-    if (this._appId !== "ng") {
-      prefix += this._appId;
-    }
-    if (!counters.hasOwnProperty(prefix)) {
-      counters[prefix] = 0;
-    }
-    return `${prefix}${randomize ? __IdGenerator._infix + "-" : ""}${counters[prefix]++}`;
-  }
-  static ɵfac = function _IdGenerator_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || __IdGenerator)();
-  };
-  static ɵprov = ɵɵdefineInjectable({
-    token: __IdGenerator,
-    factory: __IdGenerator.ɵfac,
-    providedIn: "root"
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(_IdGenerator, [{
-    type: Injectable,
-    args: [{
-      providedIn: "root"
-    }]
-  }], null, null);
-})();
-
 // node_modules/@angular/cdk/fesm2022/_keycodes-chunk.mjs
+var BACKSPACE = 8;
 var TAB = 9;
 var ENTER = 13;
 var SHIFT = 16;
@@ -108,8 +77,40 @@ function hasModifierKey(event, ...modifiers) {
   return event.altKey || event.shiftKey || event.ctrlKey || event.metaKey;
 }
 
+// node_modules/@angular/cdk/fesm2022/_id-generator-chunk.mjs
+var counters = {};
+var _IdGenerator = class __IdGenerator {
+  _appId = inject(APP_ID);
+  static _infix = `a${Math.floor(Math.random() * 1e5).toString()}`;
+  getId(prefix, randomize = false) {
+    if (this._appId !== "ng") {
+      prefix += this._appId;
+    }
+    if (!counters.hasOwnProperty(prefix)) {
+      counters[prefix] = 0;
+    }
+    return `${prefix}${randomize ? __IdGenerator._infix + "-" : ""}${counters[prefix]++}`;
+  }
+  static ɵfac = function _IdGenerator_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || __IdGenerator)();
+  };
+  static ɵprov = ɵɵdefineInjectable({
+    token: __IdGenerator,
+    factory: __IdGenerator.ɵfac,
+    providedIn: "root"
+  });
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(_IdGenerator, [{
+    type: Injectable,
+    args: [{
+      providedIn: "root"
+    }]
+  }], null, null);
+})();
+
 export {
-  _IdGenerator,
+  BACKSPACE,
   TAB,
   ENTER,
   SHIFT,
@@ -135,6 +136,7 @@ export {
   _getFocusedElementPierceShadowDom,
   _getEventTarget,
   coerceArray,
-  hasModifierKey
+  hasModifierKey,
+  _IdGenerator
 };
-//# sourceMappingURL=chunk-EZQETXZ4.js.map
+//# sourceMappingURL=chunk-ZFR65U2L.js.map

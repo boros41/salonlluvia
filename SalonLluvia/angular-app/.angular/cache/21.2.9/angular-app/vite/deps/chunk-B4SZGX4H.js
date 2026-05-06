@@ -1,14 +1,17 @@
 import {
   _animationsDisabled
-} from "./chunk-4LAVUOHA.js";
+} from "./chunk-CYYVOIZB.js";
 import {
   isFakeMousedownFromScreenReader,
   isFakeTouchstartFromScreenReader,
   normalizePassiveListenerOptions
-} from "./chunk-ZVDIEDL4.js";
+} from "./chunk-RZCAFFOR.js";
 import {
   _getEventTarget
-} from "./chunk-EZQETXZ4.js";
+} from "./chunk-ZFR65U2L.js";
+import {
+  BidiModule
+} from "./chunk-XT7CPOMY.js";
 import {
   Platform,
   coerceElement
@@ -16,9 +19,6 @@ import {
 import {
   _CdkPrivateStyleLoader
 } from "./chunk-GVJHBFLN.js";
-import {
-  BidiModule
-} from "./chunk-XT7CPOMY.js";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -41,23 +41,6 @@ import {
 import {
   __spreadValues
 } from "./chunk-GOMI4DH3.js";
-
-// node_modules/@angular/cdk/fesm2022/platform.mjs
-var PlatformModule = class _PlatformModule {
-  static ɵfac = function PlatformModule_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _PlatformModule)();
-  };
-  static ɵmod = ɵɵdefineNgModule({
-    type: _PlatformModule
-  });
-  static ɵinj = ɵɵdefineInjector({});
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(PlatformModule, [{
-    type: NgModule,
-    args: [{}]
-  }], null, null);
-})();
 
 // node_modules/@angular/material/fesm2022/_ripple-chunk.mjs
 var RippleState;
@@ -571,10 +554,12 @@ var MatRippleModule = class _MatRippleModule {
 })();
 
 export {
+  RippleState,
+  RippleRef,
   defaultRippleAnimationConfig,
   RippleRenderer,
   MAT_RIPPLE_GLOBAL_OPTIONS,
   MatRipple,
   MatRippleModule
 };
-//# sourceMappingURL=chunk-U55BFJLD.js.map
+//# sourceMappingURL=chunk-B4SZGX4H.js.map

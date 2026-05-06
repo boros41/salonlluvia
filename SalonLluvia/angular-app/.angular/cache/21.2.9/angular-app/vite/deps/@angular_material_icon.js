@@ -1,10 +1,10 @@
 import {
   trustedHTMLFromString
 } from "./chunk-VUWJC3ON.js";
-import "./chunk-GVJHBFLN.js";
 import {
   BidiModule
 } from "./chunk-XT7CPOMY.js";
+import "./chunk-GVJHBFLN.js";
 import {
   DomSanitizer,
   HttpClient

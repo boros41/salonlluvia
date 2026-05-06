@@ -1,54 +1,10 @@
 import {
-  MediaMatcher
-} from "./chunk-ZVDIEDL4.js";
-import {
-  ANIMATION_MODULE_TYPE,
   ChangeDetectionStrategy,
   Component,
-  InjectionToken,
-  NgModule,
   ViewEncapsulation,
-  inject,
   setClassMetadata,
-  ɵɵdefineComponent,
-  ɵɵdefineInjector,
-  ɵɵdefineNgModule
+  ɵɵdefineComponent
 } from "./chunk-WNUUFSUI.js";
-
-// node_modules/@angular/cdk/fesm2022/layout.mjs
-var LayoutModule = class _LayoutModule {
-  static ɵfac = function LayoutModule_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _LayoutModule)();
-  };
-  static ɵmod = ɵɵdefineNgModule({
-    type: _LayoutModule
-  });
-  static ɵinj = ɵɵdefineInjector({});
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(LayoutModule, [{
-    type: NgModule,
-    args: [{}]
-  }], null, null);
-})();
-
-// node_modules/@angular/material/fesm2022/_animation-chunk.mjs
-var MATERIAL_ANIMATIONS = new InjectionToken("MATERIAL_ANIMATIONS");
-var reducedMotion = null;
-function _getAnimationsState() {
-  if (inject(MATERIAL_ANIMATIONS, {
-    optional: true
-  })?.animationsDisabled || inject(ANIMATION_MODULE_TYPE, {
-    optional: true
-  }) === "NoopAnimations") {
-    return "di-disabled";
-  }
-  reducedMotion ??= inject(MediaMatcher).matchMedia("(prefers-reduced-motion)").matches;
-  return reducedMotion ? "reduced-motion" : "enabled";
-}
-function _animationsDisabled() {
-  return _getAnimationsState() !== "enabled";
-}
 
 // node_modules/@angular/material/fesm2022/_structural-styles-chunk.mjs
 var _StructuralStylesLoader = class __StructuralStylesLoader {
@@ -81,7 +37,6 @@ var _StructuralStylesLoader = class __StructuralStylesLoader {
 })();
 
 export {
-  _animationsDisabled,
   _StructuralStylesLoader
 };
-//# sourceMappingURL=chunk-4LAVUOHA.js.map
+//# sourceMappingURL=chunk-AUTP4AY2.js.map

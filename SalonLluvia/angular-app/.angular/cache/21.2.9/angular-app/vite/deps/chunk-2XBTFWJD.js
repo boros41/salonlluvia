@@ -429,9 +429,10 @@ var PortalModule = class _PortalModule {
 })();
 
 export {
+  ComponentPortal,
   TemplatePortal,
   DomPortalOutlet,
   CdkPortalOutlet,
   PortalModule
 };
-//# sourceMappingURL=chunk-DPGPA55V.js.map
+//# sourceMappingURL=chunk-2XBTFWJD.js.map

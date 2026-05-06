@@ -116,14 +116,7 @@ a {
 }
 
 /*** Validation Styles ***/
-.ng-invalid.ng-dirty:not(form) {
-    border: 2px solid rgb(220, 53, 69);
-    background-color: #faebd7; /*antique white*/
-}
 
-.ng-valid.ng-dirty:not(form):not(:focus) {
-    border: 2px solid #198754;
-}
 
 /*Fixes label background color's being white on the .input-validation-error background color*/
 #desired-service > label::after {
