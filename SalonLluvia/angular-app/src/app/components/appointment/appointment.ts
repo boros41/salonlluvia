@@ -14,7 +14,7 @@ export class Appointment {
     appointmentForm = new FormGroup({
         name: new FormControl("", Validators.required),
         phone: new FormControl("", [Validators.required, phoneValidator()]),
-        email: new FormControl(""),
+        email: new FormControl("", [Validators.required, Validators.email]),
         date: new FormControl(""),
         desiredService: new FormControl("")
     });
