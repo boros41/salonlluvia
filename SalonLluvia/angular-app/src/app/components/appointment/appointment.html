@@ -16,46 +16,14 @@
         <h1 class="cs-title text-capitalize mb-4">Reserve su cita</h1>
       </div>
       <form method="post" [formGroup]="appointmentForm" (ngSubmit)="handleSubmit()">
-        <div class="row">
-          <div class="col-md-6">
-            <span class="text-danger"></span>
-          </div>
-          <div class="col-md-6 d-none d-md-block">
-            <span class="text-danger"></span>
-          </div>
-        </div>
         <div class="row mb-2">
           <div class="col-md-6 mb-2 mb-md-0">
-            <!-- <div class="form-floating">
-              <input
-                class="form-control"
-                placeholder="Nombre"
-                autocomplete="name"
-                formControlName="name"
-                required
-              />
-              <label>Nombre</label>
-            </div> -->
-
             <mat-form-field class="w-100">
               <mat-label>Nombre</mat-label>
               <input formControlName="name" matInput placeholder="Placeholder" required />
             </mat-form-field>
           </div>
           <div class="col-md-6">
-            <div class="d-block d-md-none">
-              <span class="text-danger"></span>
-            </div>
-            <!-- <div class="form-floating" id="phone-number-wrapper">
-              <input
-                class="form-control"
-                placeholder="Teléfono"
-                autocomplete="tel-national"
-                formControlName="phone"
-                required
-              />
-              <label>Teléfono</label>
-            </div> -->
             <mat-form-field class="w-100">
               <mat-label>Teléfono</mat-label>
               <input formControlName="phone" matInput required />
@@ -65,27 +33,8 @@
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-md-6">
-            <span class="text-danger"></span>
-          </div>
-          <div class="col-md-6 d-none d-md-block">
-            <span class="text-danger date-validation-error"></span>
-          </div>
-        </div>
         <div class="row mb-2">
           <div class="col-md-6 mb-2 mb-md-0">
-            <!-- <div class="form-floating">
-              <input
-                class="form-control"
-                placeholder="Email"
-                autocomplete="email"
-                formControlName="email"
-                required
-              />
-              <label>Correo</label>
-            </div> -->
-
             <mat-form-field class="w-100">
               <mat-label>Correo</mat-label>
               <input formControlName="email" matInput placeholder="Placeholder" required />
@@ -94,18 +43,12 @@
             </mat-form-field>
           </div>
           <div class="col-md-6">
-            <div class="d-block d-md-none">
-              <span class="text-danger date-validation-error"></span>
-            </div>
-
-            <!-- <input class="form-control" placeholder="Date" autocomplete="off" formControlName="date" required>
-                            <label>Fecha</label> -->
             <mat-form-field class="w-100">
               <mat-label>Fecha</mat-label>
-              <input matInput [matDatepicker]="picker" formControlName="date" required />
+              <input [matDatepickerFilter]="availableDaysFilter" matInput [matDatepicker]="picker" formControlName="date" required />
               <mat-hint>MM/DD/YYYY</mat-hint>
               <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
+              <mat-datepicker disabled="false" #picker></mat-datepicker>
             </mat-form-field>
           </div>
         </div>
@@ -117,16 +60,6 @@
         </div>
         <div class="row mb-2">
           <div class="col-12">
-            <!-- <div class="form-floating" id="desired-service">
-              <textarea
-                class="form-control"
-                placeholder="Servicio deseado (por ejemplo, tinte)"
-                style="height: 150px"
-                autocomplete="off"
-                formControlName="desiredService"
-              ></textarea>
-              <label>Servicio</label>
-            </div> -->
             <mat-form-field class="w-100">
               <mat-label>Servicio</mat-label>
               <textarea formControlName="desiredService" matInput></textarea>
