@@ -86,7 +86,6 @@ public class CalendlyController : ControllerBase
                 return Problem(detail, instance, StatusCodes.Status409Conflict, title);
             }
 
-            // TODO: strip the time component if necessary
             DateTime date = (DateTime)model.Date!; // model.Date has a [Required] attribute which requires a nullable for value types
             if (!availableDays.Contains(date.ToString("yyyy-MM-dd")))
             {
@@ -172,7 +171,7 @@ public class CalendlyController : ControllerBase
             string instance = Request.Path.ToString();
             const string title = "Cache key didn't exist";
 
-            return Problem(detail, instance, StatusCodes.Status500InternalServerError);
+            return Problem(detail, instance, StatusCodes.Status500InternalServerError, title);
         }
 
         _appointmentRepo.Insert(appointment);

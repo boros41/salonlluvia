@@ -20,13 +20,13 @@
           <div class="col-md-6 mb-2 mb-md-0">
             <mat-form-field class="w-100">
               <mat-label>Nombre</mat-label>
-              <input formControlName="name" matInput placeholder="Placeholder" required />
+              <input formControlName="name" matInput placeholder="Placeholder" autocomplete="name" required />
             </mat-form-field>
           </div>
           <div class="col-md-6">
             <mat-form-field class="w-100">
               <mat-label>Teléfono</mat-label>
-              <input formControlName="phoneNumber" matInput required />
+              <input formControlName="phoneNumber" matInput autocomplete="tel" required />
               <mat-icon matSuffix>phone</mat-icon>
               <mat-hint>Include area code</mat-hint>
             </mat-form-field>
@@ -37,14 +37,20 @@
           <div class="col-md-6 mb-2 mb-md-0">
             <mat-form-field class="w-100">
               <mat-label>Correo</mat-label>
-              <input formControlName="email" matInput placeholder="Placeholder" required />
+              <input formControlName="email" matInput placeholder="Placeholder" autocomplete="email" required />
               <mat-icon matSuffix>email</mat-icon>
               <mat-hint>xxxx@yyy.zzz</mat-hint>
             </mat-form-field>
           </div>
           <div class="col-md-6">
             <mat-form-field class="w-100">
-              <mat-label>Fecha</mat-label>
+              <mat-label>
+                @if (showDateSpinner()) {
+                <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                }
+                <span> Fecha</span>
+              </mat-label>
+              
               <input [matDatepickerFilter]="availableDaysFilter" matInput [matDatepicker]="picker" formControlName="date" required />
               <mat-hint>MM/DD/YYYY</mat-hint>
               <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
@@ -73,11 +79,15 @@
               id="appointment-submit-btn"
               class="btn btn-primary text-uppercase w-100 py-3 ms-0"
               type="submit"
-              [disabled]="!appointmentForm.valid"
+              [disabled]="(!appointmentForm.valid || showSubmitSpinner())"
             >
-              <span>Reservar</span>
-              <span class="spinner-border spinner-border-sm" aria-hidden="true" hidden></span>
-              <span role="status" hidden>Reservando</span>
+
+              <span>
+                @if (showSubmitSpinner()) {
+                 <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                }
+                Reservar
+              </span>
             </button>
           </div>
         </div>

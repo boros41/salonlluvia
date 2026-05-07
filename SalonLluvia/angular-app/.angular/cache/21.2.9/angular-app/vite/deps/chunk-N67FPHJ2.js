@@ -2,7 +2,6 @@ import {
   isPlatformBrowser
 } from "./chunk-CRIUJBHX.js";
 import {
-  ElementRef,
   Injectable,
   PLATFORM_ID,
   setClassMetadata
@@ -50,23 +49,7 @@ var Platform = class _Platform {
   }], () => [], null);
 })();
 
-// node_modules/@angular/cdk/fesm2022/_element-chunk.mjs
-function coerceNumberProperty(value, fallbackValue = 0) {
-  if (_isNumberValue(value)) {
-    return Number(value);
-  }
-  return arguments.length === 2 ? fallbackValue : 0;
-}
-function _isNumberValue(value) {
-  return !isNaN(parseFloat(value)) && !isNaN(Number(value));
-}
-function coerceElement(elementOrRef) {
-  return elementOrRef instanceof ElementRef ? elementOrRef.nativeElement : elementOrRef;
-}
-
 export {
-  Platform,
-  coerceNumberProperty,
-  coerceElement
+  Platform
 };
-//# sourceMappingURL=chunk-QF27GRFC.js.map
+//# sourceMappingURL=chunk-N67FPHJ2.js.map

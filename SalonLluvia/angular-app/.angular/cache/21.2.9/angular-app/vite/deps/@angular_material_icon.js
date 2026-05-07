@@ -3,16 +3,16 @@ import {
 } from "./chunk-GK7W4MSU.js";
 import {
   DomSanitizer
-} from "./chunk-47V7LNUD.js";
-import "./chunk-E6FIWLN3.js";
-import "./chunk-CRIUJBHX.js";
+} from "./chunk-6724GQ4Z.js";
 import {
   HttpClient
 } from "./chunk-ESK5HOCG.js";
-import "./chunk-R3F3TRZB.js";
 import {
   BidiModule
 } from "./chunk-T3KXQ2IU.js";
+import "./chunk-E6FIWLN3.js";
+import "./chunk-CRIUJBHX.js";
+import "./chunk-R3F3TRZB.js";
 import {
   ChangeDetectionStrategy,
   Component,

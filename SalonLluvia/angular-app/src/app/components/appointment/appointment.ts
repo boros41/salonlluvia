@@ -5,17 +5,20 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
-import { map } from "rxjs";
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from "@angular/material/snack-bar";
 
 import phoneValidator from "../../Validation/Validators/phone.validator";
 import parsePhoneNumber, { PhoneNumber } from "libphonenumber-js";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import AppointmentModel from "../../models/appointment-model";
+import ProblemDetails from "../../Validation/problem-details";
+
 
 @Component({
     selector: "appointment",
-    imports: [ReactiveFormsModule, MatDatepickerModule, MatIconModule, MatInputModule, MatFormFieldModule],
+    imports: [ReactiveFormsModule, MatDatepickerModule, MatIconModule, MatInputModule, MatFormFieldModule, MatProgressSpinnerModule],
     templateUrl: "./appointment.html",
     styleUrls: ["./appointment-core.css", "./appointment.css"],
     providers: [provideNativeDateAdapter()],
@@ -25,17 +28,26 @@ import AppointmentModel from "../../models/appointment-model";
 export class Appointment implements OnInit {
     // #region properties
     appointmentForm = new FormGroup({
-        name: new FormControl("", Validators.required),
-        phoneNumber: new FormControl("", [Validators.required, phoneValidator()]),
-        email: new FormControl("", [Validators.required, Validators.email]),
+        name: new FormControl("", [Validators.required, Validators.maxLength(100)]),
+        phoneNumber: new FormControl("", [Validators.required, Validators.maxLength(20), phoneValidator()]),
+        email: new FormControl("", [Validators.required, Validators.maxLength(254), Validators.email]),
         date: new FormControl<Date | null>({ value: null, disabled: true }, Validators.required),
-        desiredService: new FormControl("")
+        desiredService: new FormControl("", [Validators.required, Validators.maxLength(200)])
     });
 
     private http = inject(HttpClient);
     private destroyRef = inject(DestroyRef);
+    private _snackBar = inject(MatSnackBar);
 
     private availableDays: WritableSignal<Set<string>> = signal(new Set<string>());
+
+    // Angular Material snackbar 
+    private _snackBarHorizontalPos: MatSnackBarHorizontalPosition = "center";
+    private _snackBarVerticalPos: MatSnackBarVerticalPosition = "bottom";
+    private _actionText = "Dismiss";
+
+    showSubmitSpinner = signal(false);
+    showDateSpinner = signal(true); // fetching available days onInit
 
     // used by Angular Material's datepicker to only enable days returned by Calendly API
     availableDaysFilter = (d: Date | null): boolean => {
@@ -77,6 +89,7 @@ export class Appointment implements OnInit {
                 complete: () => {
                     console.log("Enabling date picker");
                     this.appointmentForm.controls.date.enable();
+                    this.showDateSpinner.set(false);
                 }
             });
     }
@@ -108,6 +121,8 @@ export class Appointment implements OnInit {
             return;
         }
 
+        this.showSubmitSpinner.set(true);
+
         const appointmentModel: AppointmentModel = {
             name: this.appointmentForm.value.name ?? "",
             phoneNumber: this.appointmentForm.value.phoneNumber ?? "",
@@ -125,11 +140,19 @@ export class Appointment implements OnInit {
             error: (error: HttpErrorResponse) => {
                 console.log("unable to book appointment :(");
                 console.log(error);
+                const errorResponse: ProblemDetails = error.error;
+                this._snackBar.open(errorResponse.detail, this._actionText, {
+                    horizontalPosition: this._snackBarHorizontalPos,
+                    verticalPosition: this._snackBarVerticalPos
+                });
+
+                this.showSubmitSpinner.set(false);
             },
             complete: () => {
-                
+
             }
         });
+
 
         console.log("submitting appointment");
     }
