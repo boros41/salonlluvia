@@ -2,6 +2,7 @@ using Azure.Identity;
 using Azure.Storage.Blobs;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Net.Http.Headers;
 using Server.Data.Repository;
 using Server.Integrations.AzureBlobStorage;
 using Server.Integrations.AzureBlobStorage.Interfaces;
@@ -25,7 +26,8 @@ public class Program
         {
             options.AddPolicy(corsPolicyName, policyBuilder =>
             {
-                policyBuilder.WithOrigins("http://localhost:4200");
+                policyBuilder.WithOrigins("http://localhost:4200")
+                             .WithHeaders(HeaderNames.ContentType);
             });
         });
 

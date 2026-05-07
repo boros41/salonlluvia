@@ -15,7 +15,7 @@
         <h1 class="font-dancing-script text-primary mb-0">Contáctanos</h1>
         <h1 class="cs-title text-capitalize mb-4">Reserve su cita</h1>
       </div>
-      <form method="post" [formGroup]="appointmentForm" (ngSubmit)="handleSubmit()">
+      <form method="post" [formGroup]="appointmentForm" (ngSubmit)="submitAppointment()">
         <div class="row mb-2">
           <div class="col-md-6 mb-2 mb-md-0">
             <mat-form-field class="w-100">
@@ -26,7 +26,7 @@
           <div class="col-md-6">
             <mat-form-field class="w-100">
               <mat-label>Teléfono</mat-label>
-              <input formControlName="phone" matInput required />
+              <input formControlName="phoneNumber" matInput required />
               <mat-icon matSuffix>phone</mat-icon>
               <mat-hint>Include area code</mat-hint>
             </mat-form-field>
@@ -48,7 +48,7 @@
               <input [matDatepickerFilter]="availableDaysFilter" matInput [matDatepicker]="picker" formControlName="date" required />
               <mat-hint>MM/DD/YYYY</mat-hint>
               <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker disabled="false" #picker></mat-datepicker>
+              <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
           </div>
         </div>

@@ -3,6 +3,7 @@
 public static class Tags
 {
     public const string BusinessName = "salonlluvia";
+    public const string BusinessPhone = "(704) 500-3937";
     public const int SHA256HashHexLength = 64;
     public const string ImagePurpose = "gallery";
     public const string ImageVariant = "original"; // og image uploaded or processed .webp image, etc
