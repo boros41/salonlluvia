@@ -156,7 +156,7 @@ public class CalendlyController : ControllerBase
             {
                 case StatusCodes.Status403Forbidden:
                     // Access to the "/invitees" endpoint is limited to Calendly users on paid plans (Standard and above). Users on the Free plan will receive a 403 Forbidden response.
-                    detail = $"Unfortunately, the booking service rejected and did not create the appointment. Please contact the salon to directly schedule an appointment at {Tags.BusinessPhone}. If this continues, please contact support with this code: {statusCode}";
+                    detail = $"Please contact the salon to directly schedule an appointment at {Tags.BusinessPhone}.";
                     break;
                 default:
                     detail = $"Unfortunately, an error occured when trying to book your appointment. Please contact the salon to directly schedule an appointment at {Tags.BusinessPhone}. If this continues, please contact support with this code: {statusCode}";

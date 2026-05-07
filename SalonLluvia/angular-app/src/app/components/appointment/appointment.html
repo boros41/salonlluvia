@@ -45,7 +45,7 @@
           <div class="col-md-6">
             <mat-form-field class="w-100">
               <mat-label>
-                @if (showDateSpinner()) {
+                @if (isDatepickerLoading()) {
                 <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
                 }
                 <span> Fecha</span>
@@ -79,11 +79,11 @@
               id="appointment-submit-btn"
               class="btn btn-primary text-uppercase w-100 py-3 ms-0"
               type="submit"
-              [disabled]="(!appointmentForm.valid || showSubmitSpinner())"
+              [disabled]="(!appointmentForm.valid || isDatepickerLoading() || isFormSubmitting())"
             >
 
               <span>
-                @if (showSubmitSpinner()) {
+                @if (isFormSubmitting()) {
                  <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
                 }
                 Reservar

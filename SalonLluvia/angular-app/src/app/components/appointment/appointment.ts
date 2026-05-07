@@ -1,4 +1,4 @@
-import { Component, OnInit, signal, WritableSignal, Signal, ChangeDetectionStrategy, Injectable, inject, DestroyRef } from "@angular/core";
+import { Component, OnInit, signal, WritableSignal, Signal, ChangeDetectionStrategy, Injectable, inject, DestroyRef, computed } from "@angular/core";
 import { ReactiveFormsModule, FormGroup, FormControl, Validators, ValueChangeEvent, ControlEvent, FormControlStatus } from "@angular/forms"
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
@@ -46,8 +46,8 @@ export class Appointment implements OnInit {
     private _snackBarVerticalPos: MatSnackBarVerticalPosition = "bottom";
     private _actionText = "Dismiss";
 
-    showSubmitSpinner = signal(false);
-    showDateSpinner = signal(true); // fetching available days onInit
+    isFormSubmitting = signal(false);
+    isDatepickerLoading = signal(this.appointmentForm.controls.date.status === "DISABLED");
 
     // used by Angular Material's datepicker to only enable days returned by Calendly API
     availableDaysFilter = (d: Date | null): boolean => {
@@ -73,6 +73,10 @@ export class Appointment implements OnInit {
     private fetchAvailableDays(): void {
         const url = "https://localhost:7172/api/calendly/available-days";
 
+        console.log(`Date FormControl: ${this.appointmentForm.controls.date}`)
+        console.log(`Date FormControl value: ${this.appointmentForm.value.date}`)
+        console.log(`Date FormControl status: ${this.appointmentForm.controls.date.status}`)
+
         this.http.get<Array<string>>(url)
             .pipe(takeUntilDestroyed(this.destroyRef))
             .subscribe({
@@ -89,7 +93,9 @@ export class Appointment implements OnInit {
                 complete: () => {
                     console.log("Enabling date picker");
                     this.appointmentForm.controls.date.enable();
-                    this.showDateSpinner.set(false);
+                    this.isDatepickerLoading.set(false);
+
+                    console.log(`Is datepicker loading? ${this.isDatepickerLoading()}`)
                 }
             });
     }
@@ -121,7 +127,7 @@ export class Appointment implements OnInit {
             return;
         }
 
-        this.showSubmitSpinner.set(true);
+        this.isFormSubmitting.set(true);
 
         const appointmentModel: AppointmentModel = {
             name: this.appointmentForm.value.name ?? "",
@@ -146,13 +152,12 @@ export class Appointment implements OnInit {
                     verticalPosition: this._snackBarVerticalPos
                 });
 
-                this.showSubmitSpinner.set(false);
+                this.isFormSubmitting.set(false);
             },
             complete: () => {
-
+                this.isFormSubmitting.set(false);
             }
         });
-
 
         console.log("submitting appointment");
     }
