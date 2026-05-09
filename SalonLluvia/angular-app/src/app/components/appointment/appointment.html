@@ -15,7 +15,7 @@
         <h1 class="font-dancing-script text-primary mb-0">Contáctanos</h1>
         <h1 class="cs-title text-capitalize mb-4">Reserve su cita</h1>
       </div>
-      <form method="post" [formGroup]="appointmentForm" (ngSubmit)="submitAppointment()">
+      <form [formGroup]="appointmentForm" (ngSubmit)="submitAppointment()">
         <div class="row mb-2">
           <div class="col-md-6 mb-2 mb-md-0">
             <mat-form-field class="w-100">

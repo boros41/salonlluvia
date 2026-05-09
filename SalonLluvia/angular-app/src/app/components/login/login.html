@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row text-center">
+    <h1 class="col">Login</h1>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="text-danger col-md-6"></div>
+  </div>
+  <form method="post" [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <span class="text-danger"></span>
+      </div>
+    </div>
+    <div class="row mb-2 justify-content-center">
+      <div class="col-md-6">
+        <div class="form-floating">
+          <input formControlName="username" class="form-control" placeholder="Username" />
+          <label>Username</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <span class="text-danger"></span>
+      </div>
+    </div>
+    <div class="row mb-2 justify-content-center">
+      <div class="col-md-6">
+        <div class="form-floating">
+          <input
+            formControlName="password"
+            type="password"
+            class="form-control"
+            placeholder="Password"
+          />
+          <label>Password</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-2 justify-content-center">
+      <div class="col-md-6">
+        <input
+          formControlName="rememberMe"
+          type="checkbox"
+          title="Remember Me"
+          class="form-check-inline"
+        />
+        <label>Remember Me</label>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-6 text-center">
+        <button [disabled]="!loginForm.valid" type="submit" class="btn btn-primary">Log In</button>
+        <a routerLink="/" class="btn btn-primary">Cancel</a>
+      </div>
+    </div>
+  </form>
+</div>

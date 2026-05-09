@@ -16,29 +16,34 @@ namespace Server;
 
 public class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
 
         // Enable CORS for Angular frontend
+        // https://learn.microsoft.com/en-us/aspnet/core/security/cors?view=aspnetcore-10.0#ecors6:~:text=all%20controller%20endpoints.-,Enable%20Cors%20with%20endpoint%20routing,-With%20endpoint%20routing
         const string corsPolicyName = "AngularDevelopment";
         builder.Services.AddCors(options =>
         {
             options.AddPolicy(corsPolicyName, policyBuilder =>
             {
-                policyBuilder.WithOrigins("http://localhost:4200")
-                             .WithHeaders(HeaderNames.ContentType);
+                policyBuilder.WithOrigins("https://localhost:4200")
+                             .WithHeaders(HeaderNames.ContentType)
+                             .AllowCredentials();
             });
         });
 
         // Add services to the container.
+        builder.Services.AddAuthorization();
+
+        builder.Services
+               .AddIdentityApiEndpoints<User>()
+               .AddRoles<IdentityRole>()
+               .AddEntityFrameworkStores<SalonContext>();
+
         builder.Services.AddControllers();
 
         builder.Services.AddMemoryCache();
-
-        builder.Services.AddIdentity<User, IdentityRole>()
-               .AddEntityFrameworkStores<SalonContext>()
-               .AddDefaultTokenProviders();
 
         builder.Services.AddOpenApi(); // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 
@@ -106,6 +111,8 @@ public class Program
 
         var app = builder.Build();
 
+        app.MapIdentityApi<IdentityUser>();
+
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
@@ -120,8 +127,14 @@ public class Program
 
         app.UseAuthorization();
 
+        IServiceScopeFactory scopeFactory = app.Services.GetRequiredService<IServiceScopeFactory>();
+        using (IServiceScope scope = scopeFactory.CreateScope())
+        {
+            await ConfigureIdentity.CreateAdminUserAsync(scope.ServiceProvider);
+        }
+
         app.MapControllers();
 
-        app.Run();
+        await app.RunAsync();
     }
 }

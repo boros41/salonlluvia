@@ -1,36 +1,102 @@
 <!-- Navbar Start -->
 <div class="container-fluid bg-light p-0">
-    <nav class="navbar navbar-expand-xl navbar-light p-0">
-        <a class="navbar-brand bg-primary py-4 px-5 me-0" routerLink="/" (click)="collapseNavbar()">
-            <h1 class="mb-0 text-center" translate="no">
-                <i class="bi bi-scissors"></i>Salon Lluvia
-            </h1>
-        </a>
-        <button type="button" class="navbar-toggler me-4" id="navbarCollapseBtn" data-bs-toggle="collapse"
-                data-bs-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse p-3" id="navbarCollapse">
-            <div class="navbar-nav mx-auto">
-                <a class="nav-item nav-link">Galería</a>
+  <nav class="navbar navbar-expand-xl navbar-light p-0">
+    <a class="navbar-brand bg-primary py-4 px-5 me-0" routerLink="/" (click)="collapseNavbar()">
+      <h1 class="mb-0 text-center" translate="no"><i class="bi bi-scissors"></i>Salon Lluvia</h1>
+    </a>
+    <button
+      type="button"
+      class="navbar-toggler me-4"
+      id="navbarCollapseBtn"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarCollapse"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse p-3" id="navbarCollapse">
+      <div class="navbar-nav mx-auto">
+        <a
+          class="nav-item nav-link"
+          routerLink="/galeria"
+          routerLinkActive="active"
+          (click)="collapseNavbar()"
+          >Galería</a
+        >
 
-                <a class="nav-item nav-link" routerLink="/servicio" routerLinkActive="active" (click)="collapseNavbar()">Servicio</a>
-                
-                <a class="nav-item nav-link" routerLink="/nosotros" routerLinkActive="active" (click)="collapseNavbar()">Nosotros</a>
-                
-                <a class="nav-item nav-link" routerLink="/equipo" routerLinkActive="active" (click)="collapseNavbar()">Equipo</a>
-                
-                <a class="nav-item nav-link" routerLink="/cita" routerLinkActive="active" (click)="collapseNavbar()">Cita</a>
-            </div>
-            <div class="d-flex align-items-center">
-                <a class="btn btn-primary btn-sm-square me-3" href="https://www.facebook.com/SalonLluvia" target="_blank">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <!-- <a class="btn btn-primary btn-sm-square me-3" href="https://www.instagram.com/serena_arellanoo/" target="_blank">
+        <a
+          class="nav-item nav-link"
+          routerLink="/servicio"
+          routerLinkActive="active"
+          (click)="collapseNavbar()"
+          >Servicio</a
+        >
+
+        <a
+          class="nav-item nav-link"
+          routerLink="/nosotros"
+          routerLinkActive="active"
+          (click)="collapseNavbar()"
+          >Nosotros</a
+        >
+
+        <a
+          class="nav-item nav-link"
+          routerLink="/equipo"
+          routerLinkActive="active"
+          (click)="collapseNavbar()"
+          >Equipo</a
+        >
+
+        <a
+          class="nav-item nav-link"
+          routerLink="/cita"
+          routerLinkActive="active"
+          (click)="collapseNavbar()"
+          >Cita</a
+        >
+      </div>
+      <div class="d-flex align-items-center">
+        @if (_authService.isLoggedIn()) {
+          <button
+            (click)="logout()"
+            class="btn btn-primary btn-sm-square me-3 p-1"
+            style="width: auto"
+          >
+            Log Out
+          </button>
+
+          @if (_authService.isAdmin()) {
+            <button
+              (click)="openImageUploadDialog()"
+              class="btn btn-primary btn-sm-square me-3 p-1"
+              matButton
+              style="width: auto"
+            >
+              Upload Image
+            </button>
+          }
+        } @else {
+          <a
+            routerLink="/account/login"
+            (click)="collapseNavbar()"
+            class="btn btn-primary btn-sm-square me-3 p-1"
+            style="width: auto"
+          >
+            Iniciar
+          </a>
+        }
+        <a
+          class="btn btn-primary btn-sm-square me-3"
+          href="https://www.facebook.com/SalonLluvia"
+          target="_blank"
+        >
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <!-- <a class="btn btn-primary btn-sm-square me-3" href="https://www.instagram.com/serena_arellanoo/" target="_blank">
                     <i class="fab fa-instagram"></i>
                 </a> -->
-            </div>
-        </div>
-    </nav>
+      </div>
+    </div>
+  </nav>
 </div>
 <!-- Navbar End -->

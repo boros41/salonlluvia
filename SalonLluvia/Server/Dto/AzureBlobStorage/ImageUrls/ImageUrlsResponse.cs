@@ -22,7 +22,7 @@ internal sealed record ImageResponse
     [JsonPropertyName("hairstyles")]
     public required List<HairStyleResponse> Hairstyles { get; init; }
 
-    [JsonPropertyName("hair_colors")]
+    [JsonPropertyName("hairColors")]
     public required List<HairColorResponse> HairColors { get; init; }
 }
 

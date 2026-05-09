@@ -84,8 +84,6 @@ export class Appointment implements OnInit {
                     console.log(availableDays);
 
                     this.availableDays.set(new Set<string>(availableDays));
-
-                    return availableDays;
                 },
                 error: (error: HttpErrorResponse) => {
                     console.log(error);

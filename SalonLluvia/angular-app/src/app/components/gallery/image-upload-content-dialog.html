@@ -1,0 +1,160 @@
+<h2 mat-dialog-title>Subir Imagen</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="imageUploadForm" (ngSubmit)="uploadImage()">
+    <span class="form-label">Imagen</span>
+    <input
+      (change)="onImageSelected($event)"
+      type="file"
+      accept="image/*"
+      class="form-control mb-2"
+    />
+
+    <span class="form-label">Género</span>
+    <mat-radio-group class="row mb-2" formControlName="gender" aria-label="Select an option">
+      <div class="col">
+        <mat-radio-button value="f">Mujer</mat-radio-button>
+        <mat-radio-button value="m">Hombre</mat-radio-button>
+      </div>
+    </mat-radio-group>
+
+    <!-- Ideally I would fetch & iterate these but it's not that many so this is easier -->
+    <span class="form-label">Estilos</span>
+    <div class="row mb-2">
+      <mat-checkbox
+        class="col-4"
+        [checked]="hasHairstyle('Peinado')"
+        (change)="toggleHairstyle('Peinado', $event.checked)"
+      >
+        Peinado
+      </mat-checkbox>
+      <mat-checkbox
+        class="col-4"
+        [checked]="hasHairstyle('Trenzas')"
+        (change)="toggleHairstyle('Trenzas', $event.checked)"
+      >
+        Trenzas
+      </mat-checkbox>
+      <mat-checkbox
+        class="col-4"
+        [checked]="hasHairstyle('Corto')"
+        (change)="toggleHairstyle('Corto', $event.checked)"
+      >
+        Corto
+      </mat-checkbox>
+      <mat-checkbox
+        class="col-4"
+        [checked]="hasHairstyle('Tinte')"
+        (change)="toggleHairstyle('Tinte', $event.checked)"
+      >
+        Tinte
+      </mat-checkbox>
+      <mat-checkbox
+        class="col-4"
+        [checked]="hasHairstyle('Corte')"
+        (change)="toggleHairstyle('Corte', $event.checked)"
+      >
+        Corte
+      </mat-checkbox>
+      <mat-checkbox
+        class="col-4"
+        [checked]="hasHairstyle('Liso')"
+        (change)="toggleHairstyle('Liso', $event.checked)"
+      >
+        Liso
+      </mat-checkbox>
+      <mat-checkbox
+        class="col-4"
+        [checked]="hasHairstyle('Chino')"
+        (change)="toggleHairstyle('Chino', $event.checked)"
+      >
+        Chino
+      </mat-checkbox>
+      <mat-checkbox
+        class="col-4"
+        [checked]="hasHairstyle('Largo')"
+        (change)="toggleHairstyle('Largo', $event.checked)"
+      >
+        Largo
+      </mat-checkbox>
+      <mat-checkbox
+        class="col-4"
+        [checked]="hasHairstyle('Otro')"
+        (change)="toggleHairstyle('Otro', $event.checked)"
+      >
+        Otro
+      </mat-checkbox>
+    </div>
+
+    <!-- HAIR COLOR CHECKBOXES -->
+    <span class="form-label">Colores</span>
+    <div class="row">
+      <mat-checkbox
+        class="col-4"
+        [checked]="hasHairColor('Negro')"
+        (change)="toggleHairColor('Negro', $event.checked)"
+      >
+        Negro
+      </mat-checkbox>
+      <mat-checkbox
+        class="col-4"
+        [checked]="hasHairColor('Rojo')"
+        (change)="toggleHairColor('Rojo', $event.checked)"
+      >
+        Rojo
+      </mat-checkbox>
+      <mat-checkbox
+        class="col-4"
+        [checked]="hasHairColor('Morado')"
+        (change)="toggleHairColor('Morado', $event.checked)"
+      >
+        Morado
+      </mat-checkbox>
+      <mat-checkbox
+        class="col-4"
+        [checked]="hasHairColor('Cafe')"
+        (change)="toggleHairColor('Cafe', $event.checked)"
+      >
+        Cafe
+      </mat-checkbox>
+      <mat-checkbox
+        class="col-4"
+        [checked]="hasHairColor('Mixto')"
+        (change)="toggleHairColor('Mixto', $event.checked)"
+      >
+        Mixto
+      </mat-checkbox>
+      <mat-checkbox
+        class="col-4"
+        [checked]="hasHairColor('Rosa')"
+        (change)="toggleHairColor('Rosa', $event.checked)"
+      >
+        Rosa
+      </mat-checkbox>
+      <mat-checkbox
+        class="col-4"
+        [checked]="hasHairColor('Rubio')"
+        (change)="toggleHairColor('Rubio', $event.checked)"
+      >
+        Rubio
+      </mat-checkbox>
+      <mat-checkbox
+        class="col-4"
+        [checked]="hasHairColor('Azul')"
+        (change)="toggleHairColor('Azul', $event.checked)"
+      >
+        Azul
+      </mat-checkbox>
+    </div>
+
+    <mat-dialog-actions align="end">
+      <button type="button" matButton mat-dialog-close>Cancela</button>
+      <button
+        type="submit"
+        [disabled]="!imageUploadForm.valid"
+        matButton
+      >
+        Subir
+      </button>
+    </mat-dialog-actions>
+  </form>
+</mat-dialog-content>

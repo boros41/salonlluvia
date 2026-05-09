@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="text-center">
+    <h1 class="font-dancing-script text-primary">Galería</h1>
+    <h1 class="">Explore Nuestra Galería</h1>
+  </div>
+
+  <div id="grid">
+    <!-- .grid-sizer empty element, only used for grid's column width: https://masonry.desandro.com/options#element-sizing:~:text=Layout-,Element%20sizing,-Sizing%20options%20columnWidth -->
+    <div class="grid-sizer col-sm-6 col-lg-3"></div>
+
+    <!-- The width of each grid-item should match the width of the grid's column -->
+    @for (image of images(); track image.id) {
+      <div class="grid-item col-sm-6 col-lg-3">
+        <mat-card class="example-card" appearance="outlined">
+          <a [href]="image.url" data-lightbox="gallery" [attr.data-caption]="image.description">
+            <img mat-card-image class="w-100" [src]="image.url" [alt]="image.description" />
+          </a>
+
+          @if (image.description) {
+            <mat-card-content>
+              <p>{{ image.description }}</p>
+            </mat-card-content>
+          }
+
+          @if (image.hairstyles.length > 0) {
+            <mat-chip-set aria-label="Filtros">
+              <span class="ms-3" style="display: inline-flex; align-items: center">Peinados:</span>
+              @for (hairstyle of image.hairstyles; track $index) {
+                <mat-chip>
+                  {{ hairstyle.style }}
+                </mat-chip>
+              }
+            </mat-chip-set>
+          }
+
+          @if (image.hairColors.length > 0) {
+            <mat-chip-set aria-label="Filtros">
+              <span class="ms-3" style="display: inline-flex; align-items: center">Colores:</span>
+
+              @for (hairColor of image.hairColors; track $index) {
+                <mat-chip>
+                  {{ hairColor.color }}
+                </mat-chip>
+              }
+            </mat-chip-set>
+          }
+        </mat-card>
+      </div>
+    }
+  </div>
+</div>
