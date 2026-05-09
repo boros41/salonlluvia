@@ -473,3 +473,9 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+*.key
+*.pem
+*.crt
+ssl/
+certs/
