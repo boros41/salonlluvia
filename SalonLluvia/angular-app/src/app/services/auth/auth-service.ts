@@ -44,7 +44,7 @@ export class AuthenticationService {
                     console.log(`Login status code: ${response.status}`);
 
                     this.isLoggedIn.set(true);
-                    this._notificationService.alert("Successful admin login!");
+                    this._notificationService.alert("Successful admin login!", 10_000);
 
                     this._router.navigateByUrl("/");
                 },
@@ -70,7 +70,7 @@ export class AuthenticationService {
             .subscribe({
                 next: () => {
                     this.isLoggedIn.set(false);
-                    this._notificationService.alert("Successfully logged out");
+                    this._notificationService.alert("Successfully logged out", 10_000);
                 },
                 error: (error: HttpErrorResponse) => {
                     this._errorService.handleHttpError(error);

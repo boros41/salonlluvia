@@ -92,14 +92,6 @@ var Z = 90;
 var META = 91;
 var MAC_META = 224;
 
-// node_modules/@angular/cdk/fesm2022/keycodes.mjs
-function hasModifierKey(event, ...modifiers) {
-  if (modifiers.length) {
-    return modifiers.some((modifier) => event[modifier]);
-  }
-  return event.altKey || event.shiftKey || event.ctrlKey || event.metaKey;
-}
-
 // node_modules/@angular/cdk/fesm2022/_shadow-dom-chunk.mjs
 var shadowDomIsSupported;
 function _supportsShadowDom() {
@@ -1485,6 +1477,14 @@ var A11yModule = class _A11yModule {
   }], () => [], null);
 })();
 
+// node_modules/@angular/cdk/fesm2022/keycodes.mjs
+function hasModifierKey(event, ...modifiers) {
+  if (modifiers.length) {
+    return modifiers.some((modifier) => event[modifier]);
+  }
+  return event.altKey || event.shiftKey || event.ctrlKey || event.metaKey;
+}
+
 // node_modules/@angular/cdk/fesm2022/_typeahead-chunk.mjs
 var DEFAULT_TYPEAHEAD_DEBOUNCE_INTERVAL_MS = 200;
 var Typeahead = class {
@@ -2484,6 +2484,8 @@ function _isTestEnvironment() {
 }
 
 export {
+  isFakeMousedownFromScreenReader,
+  isFakeTouchstartFromScreenReader,
   BACKSPACE,
   TAB,
   ENTER,
@@ -2498,9 +2500,6 @@ export {
   RIGHT_ARROW,
   DOWN_ARROW,
   DELETE,
-  hasModifierKey,
-  isFakeMousedownFromScreenReader,
-  isFakeTouchstartFromScreenReader,
   _getFocusedElementPierceShadowDom,
   _getEventTarget,
   normalizePassiveListenerOptions,
@@ -2512,6 +2511,7 @@ export {
   CdkTrapFocus,
   LiveAnnouncer,
   A11yModule,
+  hasModifierKey,
   FocusKeyManager,
   _IdGenerator,
   AriaDescriber,
@@ -2520,4 +2520,4 @@ export {
   coerceBooleanProperty,
   coerceStringArray
 };
-//# sourceMappingURL=chunk-6SZEDT3P.js.map
+//# sourceMappingURL=chunk-IWSUUP7V.js.map

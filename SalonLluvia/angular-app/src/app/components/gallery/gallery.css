@@ -1,0 +1,10 @@
+#gallery {
+    height: 100dvh;
+}
+
+#gallery-spinner {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+}
+

@@ -7,13 +7,14 @@ export default class NotificationService {
 
     alert(
         message: string,
+        duration?: number,
         posHorizontal: MatSnackBarHorizontalPosition = "center",
         posVertical: MatSnackBarVerticalPosition = "bottom"
     ): void {
         const config: MatSnackBarConfig = {
             horizontalPosition: posHorizontal,
             verticalPosition: posVertical,
-            duration: 10_000
+            duration: duration
         };
 
         this._snackBar.open(message, "Descartar", config);

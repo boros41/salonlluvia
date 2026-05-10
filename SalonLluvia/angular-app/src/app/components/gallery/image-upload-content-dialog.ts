@@ -110,7 +110,7 @@ export class ImageUploadContentDialog {
 
         if (response.body) {
           // backend returns an anonymous object with a detail property
-          this._notificationService.alert(response.body.detail);
+          this._notificationService.alert(response.body.detail, 10_000);
         }
 
         this._dialogRef.close(true);

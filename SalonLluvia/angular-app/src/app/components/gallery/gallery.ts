@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy, AfterViewInit, signal, WritableSignal, Injectable, inject, DestroyRef, OnInit, effect, afterNextRender } from "@angular/core";
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { HttpClient, HttpErrorResponse, HttpResponse } from "@angular/common/http";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { MatSnackBar } from "@angular/material/snack-bar";
@@ -11,10 +12,11 @@ import { Lightbox } from "lightbox3";
 import ImagesResponse from "../../dto/gallery/images";
 import Image from "../../dto/gallery/image";
 import imagesLoaded from 'imagesloaded';
+import NotificationService from "../../services/notification/notification-service";
 
 @Component({
     selector: "gallery",
-    imports: [MatButtonModule, MatCardModule, MatChipsModule],
+    imports: [MatButtonModule, MatCardModule, MatChipsModule, MatProgressSpinnerModule],
     templateUrl: "./gallery.html",
     styleUrl: "./gallery.css",
 })
@@ -26,6 +28,7 @@ export class Gallery implements OnInit, AfterViewInit {
     images: WritableSignal<Array<Image>> = signal([]);
     masonry?: Masonry;
     private masonryIntervalId = -1;
+    private readonly _notificationService = inject(NotificationService);
 
     private readonly _observer = new MutationObserver((mutations) => {
         for (const mutation of mutations) {
@@ -94,6 +97,12 @@ export class Gallery implements OnInit, AfterViewInit {
                 },
                 error: (error: HttpErrorResponse) => {
                     console.log(error);
+
+                    switch (error.status) {
+                        case 0: 
+                            this._notificationService.alert("No se pueden obtener las imágenes en este momento. ¡Lo sentimos!");
+                            break;
+                    }
                 },
                 complete: () => {
 
