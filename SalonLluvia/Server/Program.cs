@@ -27,7 +27,7 @@ public class Program
         {
             options.AddPolicy(corsPolicyName, policyBuilder =>
             {
-                policyBuilder.WithOrigins("https://localhost:4200")
+                policyBuilder.WithOrigins("http://localhost:4200")
                              .WithHeaders(HeaderNames.ContentType)
                              .AllowCredentials();
             });

@@ -1,5 +1,6 @@
 #gallery {
-    height: 100dvh;
+    /* keeps the footer at the bottom of the page even if content is sparse */
+    min-height: 100dvh;
 }
 
 #gallery-spinner {

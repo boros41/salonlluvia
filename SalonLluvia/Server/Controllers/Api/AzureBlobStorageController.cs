@@ -94,12 +94,12 @@ public class AzureBlobStorageController : ControllerBase
 
                 List<HairStyleResponse> hairStyles = imageInDb.HairProfile
                                                           .HairStyles
-                                                          .Select(hairstyle => new HairStyleResponse() { Style = hairstyle.Style })
+                                                          .Select(hairstyle => new HairStyleResponse() { Id = hairstyle.Id, Style = hairstyle.Style })
                                                           .ToList();
 
                 List<HairColorResponse> hairColors = imageInDb.HairProfile
                                                           .HairColors
-                                                          .Select(hairColor => new HairColorResponse() { Color = hairColor.Color })
+                                                          .Select(hairColor => new HairColorResponse() { Id = hairColor.Id, Color = hairColor.Color })
                                                           .ToList();
 
                 ImageResponse imageResponse = new ImageResponse()
@@ -135,6 +135,16 @@ public class AzureBlobStorageController : ControllerBase
         {
             return StatusCode(StatusCodes.Status500InternalServerError);
         }
+    }
+
+    [HttpGet]
+    [Route("filters")]
+    public async Task<IActionResult> Filters()
+    {
+        IEnumerable<HairStyle> hairstyles = _galleryData.HairstyleRepo.List(new QueryOptions<HairStyle>());
+        IEnumerable<HairColor> hairColors = _galleryData.HairColorRepo.List(new QueryOptions<HairColor>());
+
+        return Ok(new { hairstyles = hairstyles, hairColors = hairColors });
     }
 
     [HttpPost]

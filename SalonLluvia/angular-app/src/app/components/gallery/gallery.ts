@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, AfterViewInit, signal, WritableSignal, Injectable, inject, DestroyRef, OnInit, effect, afterNextRender } from "@angular/core";
+import { Component, ChangeDetectionStrategy, AfterViewInit, signal, WritableSignal, Injectable, inject, DestroyRef, OnInit, effect, afterNextRender, computed, Signal } from "@angular/core";
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
@@ -6,17 +6,21 @@ import { HttpClient, HttpErrorResponse, HttpResponse } from "@angular/common/htt
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import {MatChipsModule} from '@angular/material/chips';
+import { TitleCasePipe } from "@angular/common";
 
 import Masonry from "masonry-layout";
 import { Lightbox } from "lightbox3";
-import ImagesResponse from "../../dto/gallery/images";
+import Images from "../../dto/gallery/images";
 import Image from "../../dto/gallery/image";
 import imagesLoaded from 'imagesloaded';
 import NotificationService from "../../services/notification/notification-service";
+import ImageFilters from "../../dto/gallery/image-filters";
+import Hairstyle from "../../dto/gallery/hairstyle";
+import HairColor from "../../dto/gallery/hair-color";
 
 @Component({
     selector: "gallery",
-    imports: [MatButtonModule, MatCardModule, MatChipsModule, MatProgressSpinnerModule],
+    imports: [MatButtonModule, MatCardModule, MatChipsModule, MatProgressSpinnerModule, TitleCasePipe],
     templateUrl: "./gallery.html",
     styleUrl: "./gallery.css",
 })
@@ -26,6 +30,8 @@ export class Gallery implements OnInit, AfterViewInit {
     destroyRef = inject(DestroyRef);
     private _snackBar = inject(MatSnackBar);
     images: WritableSignal<Array<Image>> = signal([]);
+    private _imageFilters: WritableSignal<ImageFilters> = signal({hairstyles: new Array<Hairstyle>(), hairColors: new Array<HairColor>()});
+    imageFilters: Signal<ImageFilters> = computed(() => this._imageFilters());
     masonry?: Masonry;
     private masonryIntervalId = -1;
     private readonly _notificationService = inject(NotificationService);
@@ -67,15 +73,16 @@ export class Gallery implements OnInit, AfterViewInit {
 
         // TODO: cache images signal instead of calling backend each time
         this.fetchImages();
+        this.fetchImageFilters();
     }
 
     private fetchImages(): void {
         const url = "https://localhost:7172/api/azureblobstorage/image-url";
 
-        this.http.get<ImagesResponse>(url, { observe: "response" })
+        this.http.get<Images>(url, { observe: "response" })
             .pipe(takeUntilDestroyed(this.destroyRef))
             .subscribe({
-                next: (response: HttpResponse<ImagesResponse>) => {
+                next: (response: HttpResponse<Images>) => {
                     if (response.status === 204 || response.body === null) {
                         console.log("No images to display!");
                         const noImagesMessage = "Lo sentimos, por el momento no hay imágenes disponibles.";
@@ -103,6 +110,28 @@ export class Gallery implements OnInit, AfterViewInit {
                             this._notificationService.alert("No se pueden obtener las imágenes en este momento. ¡Lo sentimos!");
                             break;
                     }
+                },
+                complete: () => {
+
+                }
+            });
+    }
+
+    private fetchImageFilters(): void {
+        const url = "https://localhost:7172/api/azureblobstorage/filters";
+
+        this.http.get<ImageFilters>(url, { observe: "response" })
+            .pipe(takeUntilDestroyed(this.destroyRef))
+            .subscribe({
+                next: (response: HttpResponse<ImageFilters>) => {
+                    console.log(`HTTP response from fetchImageFilters(): ${response}`);
+                    
+                    if (response.body) {
+                        this._imageFilters.set(response.body);
+                    }
+                },
+                error: (error: HttpErrorResponse) => {
+                    console.log(`HTTP error from fetchImageFilters(): ${error}`);
                 },
                 complete: () => {
 

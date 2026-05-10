@@ -9,7 +9,69 @@
       <mat-spinner></mat-spinner>
     </div>
   }
-  
+
+  @if (images().length > 0) {
+    <!-- Filter start -->
+    <div class="accordion mb-2">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseFilter"
+            aria-expanded="true"
+            aria-controls="collapseOne"
+          >
+            Filtros
+          </button>
+        </h2>
+        <div
+          id="collapseFilter"
+          class="accordion-collapse collapse"
+          data-bs-parent="#accordionExample"
+        >
+          <div class="accordion-body">
+            <div class="row mb-2">
+              <div class="col">
+                <span class="form-label fw-bold">Género</span><br />
+
+                <span class="badge text-bg-primary filter-gender">Ambos</span>
+                <span class="badge text-bg-secondary filter-gender">Mujer</span>
+                <span class="badge text-bg-secondary filter-gender">Hombre</span>
+              </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col">
+                <!--Hair type checkboxes such as "peinado"-->
+                <span class="form-label fw-bold">Peinados</span><br />
+
+                @for (hairstyle of imageFilters().hairstyles; track hairstyle.id) {
+                  <span class="badge text-bg-secondary filter-hairstyle">
+                    {{ hairstyle.style | titlecase }}
+                  </span>
+                }
+              </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col">
+                <!--Hair color checkboxes such as "azul"-->
+                <span class="form-label fw-bold">Colores</span><br />
+
+                @for (hairColor of imageFilters().hairColors; track hairColor.id) {
+                  <span class="badge text-bg-secondary filter-hair-color">
+                    {{ hairColor.color | titlecase }}
+                  </span>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Filter end -->
+  }
+
   <div id="grid">
     <!-- .grid-sizer empty element, only used for grid's column width: https://masonry.desandro.com/options#element-sizing:~:text=Layout-,Element%20sizing,-Sizing%20options%20columnWidth -->
     <div class="grid-sizer col-sm-6 col-lg-3"></div>

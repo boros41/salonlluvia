@@ -1,10 +1,10 @@
-import HairstyleResponse from "./hairstyle";
-import HairColorResponse from "./hair-color";
+import Hairstyle from "./hairstyle";
+import HairColor from "./hair-color";
 
 export default interface Image {
     id: number;
     url: string;
     description: string;
-    hairstyles: Array<HairstyleResponse>;
-    hairColors: Array<HairColorResponse>;
+    hairstyles: Array<Hairstyle>;
+    hairColors: Array<HairColor>;
 }
