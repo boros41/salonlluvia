@@ -35,10 +35,9 @@
             <div class="row mb-2">
               <div class="col">
                 <span class="form-label fw-bold">Género</span><br />
-
-                <span class="badge text-bg-primary filter-gender">Ambos</span>
-                <span class="badge text-bg-secondary filter-gender">Mujer</span>
-                <span class="badge text-bg-secondary filter-gender">Hombre</span>
+                <mat-chip class="filter-gender" [class.text-bg-primary]="isFilterBoth()" (click)="filterImagesByGender('Ambos')">Ambos</mat-chip>
+                <mat-chip class="filter-gender" [class.text-bg-primary]="isFilterFemale()" (click)="filterImagesByGender('Mujer')">Mujer</mat-chip>
+                <mat-chip class="filter-gender" [class.text-bg-primary]="isFilterMale()" (click)="filterImagesByGender('Hombre')">Hombre</mat-chip>
               </div>
             </div>
             <div class="row mb-2">
@@ -47,22 +46,27 @@
                 <span class="form-label fw-bold">Peinados</span><br />
 
                 @for (hairstyle of imageFilters().hairstyles; track hairstyle.id) {
-                  <span class="badge text-bg-secondary filter-hairstyle">
+                  <mat-chip (click)="filterImagesByHairstyle($event)">
                     {{ hairstyle.style | titlecase }}
-                  </span>
+                  </mat-chip>
                 }
               </div>
             </div>
-            <div class="row mb-2">
+            <div class="row mb-3">
               <div class="col">
                 <!--Hair color checkboxes such as "azul"-->
                 <span class="form-label fw-bold">Colores</span><br />
 
                 @for (hairColor of imageFilters().hairColors; track hairColor.id) {
-                  <span class="badge text-bg-secondary filter-hair-color">
+                  <mat-chip (click)="filterImagesByHairColor($event)">
                     {{ hairColor.color | titlecase }}
-                  </span>
+                  </mat-chip>
                 }
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <button (click)="fetchFilteredImages()" matButton="filled">Aplicar filtros</button>
               </div>
             </div>
           </div>
