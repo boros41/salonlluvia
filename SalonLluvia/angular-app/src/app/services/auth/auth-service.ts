@@ -21,7 +21,7 @@ export class AuthenticationService {
     isLoggedIn = signal(false);
 
     login(username: string, password: string, rememberMe: boolean): void {
-        const url = "https://localhost:7172/api/account/login?useCookies=true";
+        const url = "https://api.salonlluvia.com/account/login?useCookies=true";
 
         // const username = this.loginForm.value.username;
         // const password = this.loginForm.value.password;
@@ -59,7 +59,7 @@ export class AuthenticationService {
     }
 
     logout(): void {
-        const url = "https://localhost:7172/api/account/logout";
+        const url = "https://api.salonlluvia.com/account/logout";
 
         // https://learn.microsoft.com/en-us/aspnet/core/security/authentication/identity-api-authorization?view=aspnetcore-9.0#prerequisites:~:text=in%20this%20article.-,Log%20out,-To%20provide%20a
         this._http.post(url, {}, {
@@ -83,7 +83,7 @@ export class AuthenticationService {
     }
 
     fetchUser(): void {
-        const url = "https://localhost:7172/api/account/me";
+        const url = "https://api.salonlluvia.com/account/me";
 
         console.log("fetching user...");
         this._http.get<CurrentUser>(url, {credentials: "include", observe: "response"})

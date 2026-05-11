@@ -7,7 +7,7 @@ using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace Server.Controllers.Api;
 
-[Route("api/[controller]")]
+[Route("[controller]")]
 [ApiController]
 public class AccountController : ControllerBase
 {

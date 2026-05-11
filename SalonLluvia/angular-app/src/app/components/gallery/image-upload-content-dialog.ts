@@ -73,7 +73,7 @@ export class ImageUploadContentDialog {
   }
 
   uploadImage(): void {
-    const url = "https://localhost:7172/api/azureblobstorage/upload"
+    const url = "https://api.salonlluvia.com/azureblobstorage/upload"
 
     console.log("Uploading image...");
 

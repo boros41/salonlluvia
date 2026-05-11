@@ -107,7 +107,7 @@ export class Gallery implements OnInit, AfterViewInit {
     }
 
     private fetchImages(queryParams?: URLSearchParams): void {
-        const url = `https://localhost:7172/api/azureblobstorage/image-url?${queryParams?.toString()}`;
+        const url = `https://api.salonlluvia.com/azureblobstorage/image-url?${queryParams?.toString()}`;
 
         this.http.get<Images>(url, { observe: "response" })
             .pipe(takeUntilDestroyed(this.destroyRef))
@@ -150,7 +150,7 @@ export class Gallery implements OnInit, AfterViewInit {
 
     // populates the filter checkboxes
     private fetchImageFilters(): void {
-        const url = "https://localhost:7172/api/azureblobstorage/filters";
+        const url = "https://api.salonlluvia.com/azureblobstorage/filters";
 
         this.http.get<ImageFilters>(url, { observe: "response" })
             .pipe(takeUntilDestroyed(this.destroyRef))

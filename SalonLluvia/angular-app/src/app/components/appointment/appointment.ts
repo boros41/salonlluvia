@@ -71,7 +71,7 @@ export class Appointment implements OnInit {
     }
 
     private fetchAvailableDays(): void {
-        const url = "https://localhost:7172/api/calendly/available-days";
+        const url = "https://api.salonlluvia.com/calendly/available-days";
 
         console.log(`Date FormControl: ${this.appointmentForm.controls.date}`)
         console.log(`Date FormControl value: ${this.appointmentForm.value.date}`)
@@ -118,7 +118,7 @@ export class Appointment implements OnInit {
     }
 
     submitAppointment() {
-        const url = "https://localhost:7172/api/calendly/appointment";
+        const url = "https://api.salonlluvia.com/calendly/appointment";
 
         let date = this.appointmentForm.value.date;
         if (!date) {

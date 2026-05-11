@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "storage1": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('serviceConnectorResourceGroupName')]/providers/Microsoft.Web/sites/SalonLluviaMvc/providers/Microsoft.ServiceLinker/linkers/BlobStorageConnection_2D3992ECB4, /subscriptions/54ca6f30-190f-479b-a3f2-a33ff265e37d/resourceGroups/rg-salonlluvia-web-prod/providers/Microsoft.Web/sites/SalonLluviaMvc/providers/Microsoft.ServiceLinker/linkers/BlobStorageConnection_77D43552E4",
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Storage/storageAccounts/stsalonlluviaimgprod01",
+      "type": "storage.azure",
+      "connectionId": "BlobStorageConnection",
+      "dynamicId": null
+    },
+    "mssql1": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('serviceConnectorResourceGroupName')]/providers/Microsoft.Web/sites/SalonLluviaMvc/providers/Microsoft.ServiceLinker/linkers/ConnectionStringsDatabaseConnection_C0EE4B44B5",
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/salonlluviamvc-db-server/databases/salonlluviamvc-db",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:DatabaseConnection",
+      "dynamicId": null
+    }
+  }
+}

@@ -14,7 +14,7 @@ using Server.Utilities.Interfaces;
 
 namespace Server.Controllers.Api;
 
-[Route("api/[controller]")]
+[Route("[controller]")]
 [ApiController]
 public class AzureBlobStorageController : ControllerBase
 {

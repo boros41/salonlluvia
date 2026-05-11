@@ -10,7 +10,7 @@ using System.Text.Json;
 
 namespace Server.Controllers.Api;
 
-[Route("api/[controller]")]
+[Route("[controller]")]
 [ApiController]
 public class CalendlyController : ControllerBase
 {
