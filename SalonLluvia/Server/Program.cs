@@ -22,13 +22,23 @@ public class Program
 
         // Enable CORS for Angular frontend
         // https://learn.microsoft.com/en-us/aspnet/core/security/cors?view=aspnetcore-10.0#ecors6:~:text=all%20controller%20endpoints.-,Enable%20Cors%20with%20endpoint%20routing,-With%20endpoint%20routing
-        const string corsPolicyName = "AngularDevelopment";
+        const string corsPolicyName = "Angular";
         builder.Services.AddCors(options =>
         {
             options.AddPolicy(corsPolicyName, policyBuilder =>
             {
-                policyBuilder.WithOrigins("http://localhost:4200")
-                             .WithHeaders(HeaderNames.ContentType)
+                if (builder.Environment.IsProduction())
+                {
+                    string[] prodOrigin = ["https://www.salonlluvia.com", "https://salonlluvia.com"];
+                    policyBuilder.WithOrigins(prodOrigin);
+                }
+                else
+                {
+                    const string devOrigin = "http://localhost:4200";
+                    policyBuilder.WithOrigins(devOrigin);
+                }
+
+                policyBuilder.WithHeaders(HeaderNames.ContentType)
                              .AllowCredentials();
             });
         });
